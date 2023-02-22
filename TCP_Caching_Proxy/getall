@@ -1,0 +1,13 @@
+#!/bin/bash
+PROXY=$1
+PORT=$2
+SERVER=$3
+wget -r http://$3/ -e use_proxy=yes -e http_proxy=$PROXY:$PORT &> /dev/null
+
+for file in $(find ./$3/* -type f); do
+	renamed=$(echo $file | sed 's/.\/netsys.cs.colorado.edu/..\/PA2\/www/')
+	grep "robots.txt" $renamed &> /dev/null
+	if [ $? -eq 1 ]; then
+		diff $file $renamed
+	fi
+done

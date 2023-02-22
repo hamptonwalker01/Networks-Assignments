@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Test script for PA4
+# Expected output if no errors: absolutely nothing.
+f=`echo -e "./dfc\n"`
+f2=`echo -e "./pa4test\n"`
+f3=`echo -e "./dfc.conf\n"`
+
+for FILE in `find . -mindepth 1 -type f `; do
+    # ignore executable, this script, and the configuration file
+    if [ "$FILE" != "$f" ] && [ "$FILE" != "$f2" ] && [ "$FILE" != "$f3" ]; then
+        # otherwise, put the file onto the server
+        ./dfc put $FILE
+        mv "$FILE" "$FILE.bak" # rename the file in the client directory for diff purposes
+        ./dfc get $FILE # get the file back from the server
+        diff "$FILE" "$FILE.bak" #compare with original file 
+        # The script will output if there is a difference between files.
+        rm "$FILE.bak" # remove backup file
+    fi
+done
