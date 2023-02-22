@@ -1,5 +1,7 @@
 # CSCI 4273 | PA4 - Distributed File System| Hampton Walker
 
+## [Back Button](../README.md)
+
 This is my solution to PA4 for CSCI 4273 at CU Boulder. As stated in the writeup, the solution is coded around a static amount of 4 servers. Some of my code is dynamic, as I did not think we could assume only 4 servers at once.
 
 For this assignment, a client wants to store files on a distributed file server. Files are split into 4 roughly equal chunks (an extra byte on some chunks if filesize is not divisible by 4), and each chunk is sent to 2 different servers depending on the hash (e.g. for one file, chunk 1 goes to servers 1 and 2, where another file's hash sends chunk 1 to servers 3 and 4). Refer to the following table to see where the chunks go:
