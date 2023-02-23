@@ -18,6 +18,10 @@ You need to be on a Mac on Linux OS, as Windows does not support many of the lib
 
 - [PA4 - TCP Distributed File Server | 102/100](./TCP_Distributed_File_Server)
 
+## Note about concurrency
+
+For PA2 through PA4, we were required to allow multiple clients to connect to our server(s) concurrently. This was achieved thorugh either `fork()`-ing processes or multi-threading. I chose to `fork()` instead of multithreading, as I found many of the liraries that I was using to not be thread safe, and I did not want to find alternative functions/libraries under the given time constraints. I still did have to implement synchronization on file reading/writing in PA3 - if two users request the same exact site, one will retrieve the page(s) through the proxy and the other will retrieve the page(s) from the cache.
+
 ### Disclaimer
 
 I do not authorize any current CSCI 4273 student to plagarize my code. This repository is solely to show what I accomplished in what some students call "the most difficult Core Computer Science class offered by the University".
